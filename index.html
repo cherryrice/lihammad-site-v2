@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lihammad.com</title>
+  <link rel="stylesheet" href="css/base.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<!-- ===================== TERMINAL ===================== -->
+<div id="terminal">
+  <div id="term-bar">
+    <div class="dot dot-r"></div>
+    <div class="dot dot-y"></div>
+    <div class="dot dot-g"></div>
+    <span id="term-bar-title">serf@kali: ~</span>
+  </div>
+  <div id="term-out"></div>
+  <div id="term-input-wrap">
+    <span id="term-prompt-label"></span>
+    <input id="term-input" autocomplete="off" spellcheck="false" autofocus />
+  </div>
+</div>
+
+<!-- ===================== MAIN SITE ===================== -->
+<div id="site">
+  <nav class="got-nav">
+    <div class="got-nav-logo" id="nav-logo">lihammad.com</div>
+    <ul class="got-nav-links">
+      <li><a href="#">Placeholder 1</a></li>
+      <li><a href="#">Placeholder 2</a></li>
+      <li><a href="#">Placeholder 3</a></li>
+      <li><a href="#">Placeholder 4</a></li>
+      <li><a href="#">Placeholder 5</a></li>
+    </ul>
+    <button class="got-nav-term" onclick="goTerminal()">[ Terminal ]</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="got-hero" id="hero-section">
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">You stand before</p>
+
+      <!-- Sigil: plain image, already a shield shape -->
+      <div class="sigil-wrap" id="shield-wrap">
+        <img id="house-shield-img" src="" alt="House Sigil" />
+      </div>
+
+      <h1 class="hero-name" id="hero-name">NAME</h1>
+      <p class="hero-subtitle" id="hero-house">of House NAME</p>
+
+      <div class="hero-rule">
+        <span class="rule-line"></span>
+        <span class="rule-gem"></span>
+        <span class="rule-line"></span>
+      </div>
+
+      <p class="hero-words" id="hero-words">"House Words"</p>
+    </div>
+
+    <div class="scroll-hint">&#9660;&nbsp;&nbsp;scroll&nbsp;&nbsp;&#9660;</div>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="site-main">
+    <section class="content-section">
+      <h2 class="section-title"><span>The Maester's Records</span></h2>
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-num">I //</span>
+          <h3 class="card-title">Coming Soon</h3>
+          <p class="card-body">This section is under construction. Return when the ravens bring word.</p>
+        </article>
+        <article class="card">
+          <span class="card-num">II //</span>
+          <h3 class="card-title">Coming Soon</h3>
+          <p class="card-body">Something is being forged here. Patience is a virtue of the highborn.</p>
+        </article>
+        <article class="card">
+          <span class="card-num">III //</span>
+          <h3 class="card-title">Coming Soon</h3>
+          <p class="card-body">The maesters are still writing. Watch this scroll.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <h2 class="section-title"><span>The Grand Archive</span></h2>
+      <div class="card-grid">
+        <article class="card">
+          <span class="card-num">IV //</span>
+          <h3 class="card-title">Coming Soon</h3>
+          <p class="card-body">In the hands of the scribes. More details to come by raven.</p>
+        </article>
+        <article class="card">
+          <span class="card-num">V //</span>
+          <h3 class="card-title">Coming Soon</h3>
+          <p class="card-body">The walls of the citadel hold many secrets. Stay tuned.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    lihammad.com &nbsp;·&nbsp; In the name of the Seven
+  </footer>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

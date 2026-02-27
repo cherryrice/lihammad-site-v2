@@ -1,0 +1,621 @@
+/* ============================================================
+   RESET + BASE
+============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #0a0a0a;
+  color: #c8b89a;
+  font-family: 'IM Fell English', Georgia, serif;
+  overflow-x: hidden;
+}
+#site { display: none; }
+
+/* ============================================================
+   NAVIGATION
+============================================================ */
+.got-nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; gap: 32px;
+  padding: 0 32px;
+  height: 54px;
+  background: rgba(8,6,4,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(201,162,39,0.15);
+  z-index: 100;
+}
+.got-nav-logo {
+  font-family: 'GameOfThrones', serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  color: #c9a227;
+  text-shadow: 0 0 20px rgba(201,162,39,0.4);
+  white-space: nowrap;
+}
+.got-nav-links {
+  display: flex; gap: 4px; list-style: none;
+  flex: 1; justify-content: center;
+}
+.got-nav-links a {
+  font-family: 'GameOfThrones', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-decoration: none;
+  color: rgba(200,184,154,0.5);
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.got-nav-links a:hover {
+  color: #c9a227;
+  border-color: rgba(201,162,39,0.3);
+  background: rgba(201,162,39,0.05);
+}
+.got-nav-term {
+  font-family: 'GameOfThrones', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #c9a227;
+  background: none;
+  border: 1px solid rgba(201,162,39,0.4);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.got-nav-term:hover { background: rgba(201,162,39,0.1); }
+
+/* ============================================================
+   HERO
+============================================================ */
+.got-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #080604;
+}
+#hero-particles {
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  gap: 16px;
+  padding: 80px 24px 48px;
+}
+
+.hero-eyebrow {
+  font-family: 'GameOfThrones', serif;
+  font-size: 11px;
+  letter-spacing: 8px;
+  color: rgba(201,162,39,0.6);
+  text-transform: uppercase;
+  animation: fadeUp 1s ease 0.2s both;
+}
+
+/* ── Sigil ── */
+.sigil-wrap {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  animation: sigilReveal 1.4s cubic-bezier(0.22,1,0.36,1) 0.4s both;
+  filter: drop-shadow(0 12px 40px rgba(0,0,0,0.8));
+  transition: filter 0.3s;
+}
+.sigil-wrap:hover {
+  filter: drop-shadow(0 16px 50px rgba(0,0,0,0.9)) drop-shadow(0 0 20px rgba(201,162,39,0.2));
+}
+#house-shield-img {
+  display: block;
+  width: 240px;
+  height: auto;
+  max-height: 300px;
+  object-fit: contain;
+  /* pixel-accurate clip to shield outline — removes all black outside the shield */
+  clip-path: polygon(0.4% 0%, 99.6% 0%, 99.6% 48.3%, 99% 50%, 98% 51.7%, 97.6% 53.3%, 97.1% 55%, 96.7% 56.7%, 96% 58.3%, 95.2% 60%, 95% 61.7%, 93.8% 63.3%, 92.8% 65%, 91.9% 66.7%, 91% 68.3%, 89.7% 70%, 88.4% 71.7%, 87.1% 73.3%, 85.9% 75%, 84.2% 76.7%, 82.6% 78.3%, 80.9% 80%, 79.1% 81.7%, 77.2% 83.3%, 75.2% 85%, 73% 86.7%, 71.6% 88.3%, 68.1% 90%, 66.2% 91.7%, 62.8% 93.3%, 59.4% 95%, 56.5% 96.7%, 52.3% 98.3%, 49.9% 99.8%, 47.5% 98.3%, 43.5% 96.7%, 40.4% 95%, 37.2% 93.3%, 34.3% 91.7%, 31.7% 90%, 29% 88.3%, 26.8% 86.7%, 24.6% 85%, 22.6% 83.3%, 20.6% 81.7%, 18.7% 80%, 16.9% 78.3%, 15.2% 76.7%, 14.1% 75%, 12.8% 73.3%, 11.6% 71.7%, 10.3% 70%, 9% 68.3%, 8.1% 66.7%, 7.2% 65%, 6.2% 63.3%, 5% 61.7%, 4.8% 60%, 4% 58.3%, 3.3% 56.7%, 2.9% 55%, 2.4% 53.3%, 2% 51.7%, 1% 50%, 0.4% 48.3%);
+  -webkit-clip-path: polygon(0.4% 0%, 99.6% 0%, 99.6% 48.3%, 99% 50%, 98% 51.7%, 97.6% 53.3%, 97.1% 55%, 96.7% 56.7%, 96% 58.3%, 95.2% 60%, 95% 61.7%, 93.8% 63.3%, 92.8% 65%, 91.9% 66.7%, 91% 68.3%, 89.7% 70%, 88.4% 71.7%, 87.1% 73.3%, 85.9% 75%, 84.2% 76.7%, 82.6% 78.3%, 80.9% 80%, 79.1% 81.7%, 77.2% 83.3%, 75.2% 85%, 73% 86.7%, 71.6% 88.3%, 68.1% 90%, 66.2% 91.7%, 62.8% 93.3%, 59.4% 95%, 56.5% 96.7%, 52.3% 98.3%, 49.9% 99.8%, 47.5% 98.3%, 43.5% 96.7%, 40.4% 95%, 37.2% 93.3%, 34.3% 91.7%, 31.7% 90%, 29% 88.3%, 26.8% 86.7%, 24.6% 85%, 22.6% 83.3%, 20.6% 81.7%, 18.7% 80%, 16.9% 78.3%, 15.2% 76.7%, 14.1% 75%, 12.8% 73.3%, 11.6% 71.7%, 10.3% 70%, 9% 68.3%, 8.1% 66.7%, 7.2% 65%, 6.2% 63.3%, 5% 61.7%, 4.8% 60%, 4% 58.3%, 3.3% 56.7%, 2.9% 55%, 2.4% 53.3%, 2% 51.7%, 1% 50%, 0.4% 48.3%);
+}
+
+/* ── Name & House ── */
+.hero-name {
+  font-family: 'GameOfThrones', serif;
+  font-size: clamp(22px, 4vw, 36px);
+  letter-spacing: 4px;
+  color: var(--acc, #c9a227);
+  text-shadow: 0 0 40px rgba(201,162,39,0.3);
+  animation: fadeUp 1s ease 0.6s both;
+}
+.hero-subtitle {
+  font-family: 'GameOfThrones', serif;
+  font-size: clamp(9px, 1.5vw, 11px);
+  letter-spacing: 4px;
+  color: rgba(200,184,154,0.6);
+  animation: fadeUp 1s ease 0.7s both;
+}
+
+/* ── Rule / divider ── */
+.hero-rule {
+  display: flex; align-items: center; gap: 12px;
+  width: 240px;
+  animation: fadeUp 1s ease 0.8s both;
+}
+.rule-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, var(--acc, #c9a227), transparent);
+  opacity: 0.4;
+}
+.rule-gem {
+  width: 5px; height: 5px;
+  background: var(--acc, #c9a227);
+  transform: rotate(45deg);
+  box-shadow: 0 0 8px var(--acc, #c9a227);
+}
+
+/* ── Words ── */
+.hero-words {
+  font-family: 'IM Fell English', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(13px, 2vw, 16px);
+  color: rgba(200,184,154,0.55);
+  animation: fadeUp 1s ease 0.9s both;
+}
+
+/* ── Scroll hint ── */
+.scroll-hint {
+  position: absolute; bottom: 28px;
+  font-family: 'GameOfThrones', serif;
+  font-size: 9px; letter-spacing: 4px;
+  color: rgba(201,162,39,0.35);
+  animation: breathe 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+
+
+/* ============================================================
+   MAIN CONTENT
+============================================================ */
+.site-main {
+  background: var(--bg-main, #0c0a08);
+  position: relative; z-index: 1;
+}
+
+.content-section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 80px 40px;
+  border-top: 1px solid rgba(201,162,39,0.08);
+}
+
+.section-title {
+  font-family: 'GameOfThrones', serif;
+  font-size: 11px;
+  letter-spacing: 8px;
+  color: rgba(201,162,39,0.6);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 20px;
+  margin-bottom: 40px;
+}
+.section-title::before, .section-title::after {
+  content: '✦';
+  color: rgba(201,162,39,0.35);
+  font-size: 8px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  padding: 28px 32px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(201,162,39,0.1);
+  border-radius: 1px;
+  transition: all 0.3s;
+  position: relative;
+}
+.card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--acc, #c9a227);
+  transition: height 0.3s;
+}
+.card:hover { border-color: rgba(201,162,39,0.25); background: rgba(255,255,255,0.04); }
+.card:hover::before { height: 100%; }
+
+.card-num {
+  display: block;
+  font-family: 'GameOfThrones', serif;
+  font-size: 9px; letter-spacing: 3px;
+  color: rgba(201,162,39,0.4);
+  margin-bottom: 10px;
+}
+.card-title {
+  font-family: 'GameOfThrones', serif;
+  font-size: 15px;
+  color: rgba(200,184,154,0.8);
+  margin-bottom: 12px;
+  font-weight: normal;
+}
+.card-body {
+  font-family: 'IM Fell English', Georgia, serif;
+  font-size: 14px;
+  line-height: 1.75;
+  color: rgba(200,184,154,0.4);
+  font-style: italic;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer {
+  padding: 28px 40px;
+  text-align: center;
+  font-family: 'GameOfThrones', serif;
+  font-size: 9px;
+  letter-spacing: 5px;
+  color: rgba(201,162,39,0.3);
+  border-top: 1px solid rgba(201,162,39,0.08);
+}
+
+/* ============================================================
+   TERMINAL
+============================================================ */
+#terminal {
+  position: fixed; inset: 0;
+  background: #0d0c0a;
+  z-index: 1000;
+  display: flex; flex-direction: column;
+}
+#term-bar {
+  display: flex; align-items: center;
+  padding: 10px 16px; gap: 8px;
+  background: rgba(0,0,0,0.4);
+  border-bottom: 1px solid rgba(201,162,39,0.1);
+  flex-shrink: 0;
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; }
+.dot-r { background: #ff5f57; }
+.dot-y { background: #ffbd2e; }
+.dot-g { background: #28c840; }
+#term-bar-title {
+  margin-left: 8px;
+  font-family: 'GameOfThrones', serif;
+  font-size: 9px; letter-spacing: 3px;
+  color: rgba(201,162,39,0.5);
+}
+#term-out {
+  flex: 1; overflow-y: auto;
+  padding: 20px 24px;
+  font-family: 'Iosevka', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #d4c9a8;
+}
+#term-out .line { display: block; }
+#term-input-wrap {
+  display: flex; align-items: center;
+  padding: 12px 24px;
+  border-top: 1px solid rgba(201,162,39,0.08);
+  flex-shrink: 0;
+}
+#term-prompt-label {
+  font-family: 'Iosevka', 'Courier New', monospace;
+  font-size: 14px;
+  white-space: nowrap;
+  margin-right: 6px;
+}
+#term-input {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: 'Iosevka', 'Courier New', monospace;
+  font-size: 14px;
+  color: var(--term-col, #d4c9a8);
+  caret-color: var(--term-col, #d4c9a8);
+}
+
+/* Terminal text colors */
+.c-gld { color: #c8a84b; }
+.c-wht { color: #d4c9a8; }
+.c-red { color: #c0392b; }
+.c-grn { color: #5a8a3a; }
+.c-dim { color: #3a3020; }
+.c-ylw { color: #e3b341; }
+.c-blu { color: #4a80c0; }
+.c-cyn { color: #4ab8b8; }
+
+/* ============================================================
+   HOUSE THEMES  — CSS vars + hero bg + accent
+============================================================ */
+
+/* ── TARGARYEN ── */
+body.house-targaryen {
+  --acc: #cc2200; --acc2: #8b0000;
+  --bg-main: #080000;
+  background: #080000;
+}
+.house-targaryen .got-nav { border-bottom-color: rgba(139,0,0,0.3); }
+.house-targaryen .got-nav-logo { color: #cc2200; text-shadow: 0 0 20px rgba(200,34,0,0.5); }
+.house-targaryen .hero-name { text-shadow: 0 0 40px rgba(200,34,0,0.5); }
+.house-targaryen .card { background: rgba(20,0,0,0.6); border-color: rgba(139,0,0,0.2); }
+.house-targaryen .card:hover { border-color: rgba(200,34,0,0.4); background: rgba(30,0,0,0.8); }
+.house-targaryen .card::before { background: #cc2200; }
+.house-targaryen .card-title { color: #e8c0b0; }
+.house-targaryen .content-section { border-top-color: rgba(139,0,0,0.15); }
+.house-targaryen .site-footer { border-top-color: rgba(139,0,0,0.15); }
+/* embers */
+.house-targaryen .ember {
+  position: absolute; border-radius: 50%;
+  background: #cc2200; pointer-events: none; z-index: 1;
+  box-shadow: 0 0 6px #cc2200;
+  animation: float-up linear infinite;
+}
+
+/* ── STARK ── */
+body.house-stark {
+  --acc: #a0b0b8; --acc2: #6a8090;
+  --bg-main: #060809;
+  background: #060809;
+}
+.house-stark .got-nav-logo { color: #a0b0b8; }
+.house-stark .hero-name { color: #d8e8f0; text-shadow: 0 0 40px rgba(160,176,184,0.3); }
+.house-stark .card { background: rgba(10,14,18,0.7); border-color: rgba(100,130,150,0.2); }
+.house-stark .card::before { background: #a0b0b8; }
+
+/* ── LANNISTER ── */
+body.house-lannister {
+  --acc: #c9a227; --acc2: #8a6a10;
+  --bg-main: #080600;
+  background: #080600;
+}
+.house-lannister .got-nav-logo { color: #c9a227; text-shadow: 0 0 20px rgba(200,160,40,0.4); }
+.house-lannister .hero-name { color: #f0d060; text-shadow: 0 0 40px rgba(200,160,40,0.4); }
+.house-lannister .card { background: rgba(18,12,0,0.7); border-color: rgba(200,160,40,0.15); }
+.house-lannister .card::before { background: #c9a227; }
+
+/* ── TYRELL ── */
+body.house-tyrell {
+  --acc: #4a9a2a; --acc2: #2a6a18;
+  --bg-main: #030806;
+  background: #030806;
+}
+.house-tyrell .got-nav-logo { color: #5ab83a; }
+.house-tyrell .hero-name { color: #80d060; text-shadow: 0 0 40px rgba(74,154,42,0.4); }
+.house-tyrell .card { background: rgba(4,12,5,0.7); border-color: rgba(74,154,42,0.2); }
+.house-tyrell .card::before { background: #4a9a2a; }
+
+/* ── BARATHEON ── */
+body.house-baratheon {
+  --acc: #d4a017; --acc2: #8a6800;
+  --bg-main: #080600;
+  background: #080600;
+}
+.house-baratheon .got-nav-logo { color: #d4a017; }
+.house-baratheon .hero-name { color: #f0c030; text-shadow: 0 0 40px rgba(212,160,23,0.4); }
+.house-baratheon .card { background: rgba(16,10,0,0.7); border-color: rgba(212,160,23,0.15); }
+.house-baratheon .card::before { background: #d4a017; }
+
+/* ── MARTELL ── */
+body.house-martell {
+  --acc: #d4651a; --acc2: #8a3a08;
+  --bg-main: #080401;
+  background: #080401;
+}
+.house-martell .got-nav-logo { color: #d4651a; }
+.house-martell .hero-name { color: #f07030; text-shadow: 0 0 40px rgba(212,101,26,0.4); }
+.house-martell .card { background: rgba(18,6,0,0.7); border-color: rgba(212,101,26,0.15); }
+.house-martell .card::before { background: #d4651a; }
+
+/* ── GREYJOY ── */
+body.house-greyjoy {
+  --acc: #c9a227; --acc2: #8a6a10;
+  --bg-main: #050608;
+  background: #050608;
+}
+.house-greyjoy .got-nav-logo { color: #8aabb0; }
+.house-greyjoy .hero-name { color: #c9a227; text-shadow: 0 0 40px rgba(200,160,40,0.3); }
+.house-greyjoy .card { background: rgba(5,8,14,0.7); border-color: rgba(100,130,140,0.2); }
+.house-greyjoy .card::before { background: #c9a227; }
+
+/* ── ARRYN ── */
+body.house-arryn {
+  --acc: #5a8acc; --acc2: #2a5090;
+  --bg-main: #020508;
+  background: #020508;
+}
+.house-arryn .got-nav-logo { color: #5a8acc; }
+.house-arryn .hero-name { color: #80b0f0; text-shadow: 0 0 40px rgba(90,138,204,0.4); }
+.house-arryn .card { background: rgba(4,8,16,0.7); border-color: rgba(90,138,204,0.2); }
+.house-arryn .card::before { background: #5a8acc; }
+
+/* ── TULLY ── */
+body.house-tully {
+  --acc: #2a6a9a; --acc2: #184060;
+  --bg-main: #020508;
+  background: #020508;
+}
+.house-tully .got-nav-logo { color: #4a90c0; }
+.house-tully .hero-name { color: #60b0e0; text-shadow: 0 0 40px rgba(42,106,154,0.4); }
+.house-tully .card { background: rgba(2,6,14,0.7); border-color: rgba(42,106,154,0.2); }
+.house-tully .card::before { background: #2a6a9a; }
+
+/* ── DUNKTHELUNK ── */
+body.house-dunkthelunk {
+  --acc: #a08050; --acc2: #604820;
+  --bg-main: #060504;
+  background: #060504;
+}
+.house-dunkthelunk .got-nav-logo { color: #a08050; }
+.house-dunkthelunk .hero-name { color: #c0a060; text-shadow: 0 0 40px rgba(160,128,80,0.4); }
+.house-dunkthelunk .card { background: rgba(10,8,4,0.7); border-color: rgba(160,128,80,0.2); }
+.house-dunkthelunk .card::before { background: #a08050; }
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes sigilReveal {
+  from { opacity: 0; transform: translateY(30px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 0.7; }
+}
+@keyframes screenShake {
+  0%,100% { transform: translateX(0) translateY(0); }
+  15%     { transform: translateX(-6px) translateY(-2px); }
+  30%     { transform: translateX(6px) translateY(2px); }
+  50%     { transform: translateX(-4px) translateY(-1px); }
+  70%     { transform: translateX(3px) translateY(1px); }
+  85%     { transform: translateX(-1px); }
+}
+.hero-shaking { animation: screenShake 0.5s ease; }
+
+@keyframes float-up {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.9; }
+  50%  { transform: translateY(-40vh) translateX(var(--dx, 0)) scale(0.7); opacity: 0.6; }
+  100% { transform: translateY(-80vh) translateX(var(--dx, 0)) scale(0.3); opacity: 0; }
+}
+
+/* blood drops for Stark */
+  6%   { opacity: 0.9; }
+  85%  { opacity: 0.7; }
+  100% { transform: translateY(95vh) scaleX(0.9); opacity: 0; }
+}
+
+/* faith star pulse */
+  50%       { transform: scale(1.05) rotate(20deg); }
+}
+  50%       { opacity: 1.0; }
+}
+  50%       { opacity: 1.0; transform: translate(-50%,-50%) scale(1.12); }
+}
+
+/* ── House hero background patterns ── */
+.house-targaryen .got-hero {
+  background: #1a0000 !important;
+}
+.house-targaryen .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-lannister .got-hero {
+  background: #160e00 !important;
+}
+.house-lannister .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-tyrell .got-hero {
+  background: #041400 !important;
+}
+.house-tyrell .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-baratheon .got-hero {
+  background: #0d0d00 !important;
+}
+.house-baratheon .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-martell .got-hero {
+  background: #1a0800 !important;
+}
+.house-martell .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-greyjoy .got-hero {
+  background: #030a12 !important;
+}
+.house-greyjoy .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-arryn .got-hero {
+  background: #00040f !important;
+}
+.house-arryn .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-tully .got-hero {
+  background: #000812 !important;
+}
+.house-tully .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-dunkthelunk .got-hero {
+  background: #100900 !important;
+}
+.house-dunkthelunk .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+.house-stark .got-hero::before {
+  content:''; position:absolute; inset:0; z-index:0;
+  background: url("../assets/oldgods-pattern.png") no-repeat center center;
+  background-size: cover;
+  opacity: 0.09;
+  filter: brightness(0.7);
+  pointer-events:none;
+}
+
+.house-martell #house-shield-img {
+  border-radius: 50%;
+  clip-path: none;
+}

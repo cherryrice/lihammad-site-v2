@@ -1,0 +1,360 @@
+/* ============================================================
+   hero.css — styles for the GoT hero/landing section
+   ============================================================ */
+
+/* ── NAV ── */
+.got-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%);
+  backdrop-filter: blur(0px);
+  transition: background var(--transition), backdrop-filter var(--transition);
+}
+.got-nav.scrolled {
+  background: rgba(10,8,5,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(201,162,39,0.15);
+}
+.nav-logo {
+  font-family: var(--font-got);
+  font-size: 17px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-got);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-terminal-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--gold);
+  border: 1px solid var(--gold-dark);
+  padding: 6px 16px;
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 1px;
+}
+.nav-terminal-btn:hover {
+  background: var(--gold);
+  color: #000;
+}
+
+/* ── HERO SECTION ── */
+.got-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+#hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.ember {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: #ff6600;
+  animation: floatUp linear infinite;
+  box-shadow: 0 0 4px 1px #ff4400;
+}
+@keyframes floatUp {
+  0%   { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+  50%  { transform: translateX(var(--dx, 20px)) translateY(-40vh) scale(0.8); opacity: 0.7; }
+  100% { transform: translateX(calc(var(--dx, 20px) * 1.5)) translateY(-90vh) scale(0.3); opacity: 0; }
+}
+.snowflake {
+  position: absolute;
+  color: #c0d8f0;
+  font-size: 12px;
+  animation: snowFall linear infinite;
+  opacity: 0.6;
+  user-select: none;
+}
+@keyframes snowFall {
+  0%   { transform: translateY(-20px) translateX(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(105vh) translateX(var(--dx, 20px)) rotate(360deg); opacity: 0; }
+}
+
+.got-hero-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+.got-greeting {
+  font-family: var(--font-got);
+  font-size: clamp(11px, 1.5vw, 15px);
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  animation: fadeUp 1s ease 0.1s both;
+}
+
+/* ── SHIELD ── */
+.got-shield-wrap {
+  position: relative;
+  width: 240px;
+  height: 286px;
+  cursor: pointer;
+  user-select: none;
+  animation: shieldReveal 1.8s cubic-bezier(0.2, 0.8, 0.3, 1) 0.4s both;
+  overflow: visible;
+}
+@keyframes shieldReveal {
+  from { opacity: 0; transform: scale(0.7) translateY(30px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+/* Pulse glow on hover */
+.got-shield-wrap:hover #shield-svg {
+  filter: drop-shadow(0 0 18px rgba(201,162,39,0.35));
+}
+.got-shield-wrap:active { transform: scale(0.97); }
+
+/* ── CANNON ── */
+.cannon-wrap {
+  position: absolute;
+  top: 60px;
+  left: 260px;
+  width: 200px;
+  height: 133px;
+  opacity: 0;
+  transform: translateX(120px);
+  pointer-events: none;
+  z-index: 10;
+}
+.cannon-img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(-4px 5px 10px rgba(0,0,0,0.9));
+}
+.cannonball {
+  position: absolute;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #bbb 0%, #444 50%, #111 100%);
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+  top: 40px;
+  left: 0;
+  opacity: 0;
+}
+.muzzle-flash {
+  position: absolute;
+  top: 28px; left: -16px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #ff0 30%, #f80 60%, transparent 80%);
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+}
+
+/* ── NAME / TITLES ── */
+.got-name {
+  font-family: var(--font-got);
+  font-size: clamp(38px, 7vw, 88px);
+  letter-spacing: 5px;
+  line-height: 1;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(201,162,39,0.3);
+  animation: fadeUp 1.5s ease 0.7s both;
+}
+.got-house-title {
+  font-family: var(--font-got);
+  font-size: clamp(11px, 1.8vw, 18px);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  animation: fadeUp 1.5s ease 0.9s both;
+}
+.got-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 260px;
+  animation: fadeUp 1.5s ease 1.0s both;
+}
+.got-divider-line { flex:1; height:1px; background: rgba(201,162,39,0.3); }
+.got-divider-diamond {
+  width: 7px; height: 7px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+.got-words {
+  font-style: italic;
+  font-size: clamp(13px, 1.5vw, 17px);
+  color: rgba(201,162,39,0.7);
+  animation: fadeUp 1.5s ease 1.1s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SCROLL HINT ── */
+.got-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-got);
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--text-dim);
+  z-index: 2;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: translateX(-50%) translateY(0); }
+  50%       { opacity: 0.9; transform: translateX(-50%) translateY(4px); }
+}
+
+/* ── HERO SHAKE on cannon impact ── */
+@keyframes screenShake {
+  0%,100% { transform: translateX(0); }
+  15%     { transform: translateX(-8px) translateY(-3px); }
+  30%     { transform: translateX(8px) translateY(3px); }
+  50%     { transform: translateX(-5px) translateY(-2px); }
+  70%     { transform: translateX(4px) translateY(2px); }
+  85%     { transform: translateX(-2px); }
+}
+.hero-shaking { animation: screenShake 0.55s ease; }
+
+/* ── CANNON KEYFRAMES ── */
+@keyframes cannonRollIn {
+  0%   { opacity: 0; transform: translateX(120px); }
+  50%  { opacity: 1; }
+  100% { opacity: 1; transform: translateX(0); }
+}
+@keyframes cannonRecoil {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(24px); }
+  65%  { transform: translateX(9px); }
+  100% { transform: translateX(0); }
+}
+@keyframes cannonRollOut {
+  0%   { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(120px); }
+}
+@keyframes ballFly {
+  0%   { opacity:1; transform:translateX(0)     translateY(0)     rotate(0deg); }
+  30%  { opacity:1; transform:translateX(-100px) translateY(-12px) rotate(-40deg); }
+  65%  { opacity:1; transform:translateX(-240px) translateY(-18px) rotate(-85deg); }
+  88%  { opacity:1; transform:translateX(-340px) translateY(-10px) rotate(-115deg); }
+  96%  { opacity:0; transform:translateX(-370px) translateY(-5px)  rotate(-125deg); }
+  100% { opacity:0; transform:translateX(-380px) translateY(0)     rotate(-130deg); }
+}
+@keyframes muzzleFlash {
+  0%   { opacity:1; transform: scale(0.1); }
+  35%  { opacity:1; transform: scale(1.5); }
+  100% { opacity:0; transform: scale(2.5); }
+}
+
+/* ── MAESTER RECORDS (cards below hero) ── */
+.got-section {
+  padding: 80px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.got-sec-title {
+  font-family: var(--font-got);
+  font-size: clamp(14px, 2vw, 20px);
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  text-align: center;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.got-sec-title::before, .got-sec-title::after { content: '✦'; font-size: 10px; }
+.got-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2px;
+}
+.got-card {
+  background: #0d0b07;
+  border: 1px solid rgba(201,162,39,0.1);
+  padding: 32px;
+  cursor: pointer;
+  transition: border-color 0.3s, background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.got-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,162,39,0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+.got-card:hover {
+  border-color: rgba(201,162,39,0.35);
+  background: #130f09;
+}
+.card-num {
+  font-family: var(--font-got);
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--gold-dark);
+  margin-bottom: 16px;
+}
+.card-title {
+  font-family: var(--font-got);
+  font-size: clamp(16px, 2.5vw, 22px);
+  letter-spacing: 2px;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.card-body {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ── FOOTER ── */
+.got-footer {
+  border-top: 1px solid rgba(201,162,39,0.1);
+  padding: 40px;
+  text-align: center;
+  font-family: var(--font-got);
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--text-dim);
+}

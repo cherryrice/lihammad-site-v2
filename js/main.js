@@ -202,11 +202,10 @@
     blank();
     println('So be it.', 'c-gld');
     blank();
-    println(name + ' of House ' + HOUSES[pendingHouse].display + '...', 'c-gld');
-    println(HOUSES[pendingHouse].words, 'c-wht');
+    println(name + ' of House ' + HOUSES[pendingHouse].display + '.', 'c-gld');
+    println('"' + HOUSES[pendingHouse].words + '"', 'c-wht');
     blank();
-    println('Opening the gates of lihammad.com...', 'c-wht');
-    setTimeout(function () { goSite(pendingHouse, pendingName); }, 900);
+    println('Your allegiance is sworn. Type "home" to enter lihammad.com.', 'c-wht');
   }
 
   // =====================================================
@@ -602,7 +601,7 @@
       : [
           ['You are a serf at the gates of lihammad.com.', 'c-wht'],
           ['', 'c-dim'],
-          ['  — The steward shouts from atop the gate...', 'c-ita c-dim'],
+          ['... the steward shouts from atop the gate ...', 'c-ita c-wht'],
           ['"TO WHICH HOUSE DO YOU BELONG?"', 'c-gld'],
           ['', 'c-dim'],
           ['Type \"help\" for commands.', 'c-wht'],
@@ -619,7 +618,7 @@
 
     var i = 0;
     function next() {
-      if (i < lines.length) { println(lines[i][0], lines[i][1]); i++; setTimeout(next, 48); }
+      if (i < lines.length) { println(lines[i][0], lines[i][1]); i++; setTimeout(next, 3000); }
     }
     next();
   }

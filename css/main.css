@@ -286,10 +286,6 @@ body {
   border-bottom: 1px solid rgba(201,162,39,0.1);
   flex-shrink: 0;
 }
-.dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; }
-.dot-r { background: #ff5f57; }
-.dot-y { background: #ffbd2e; }
-.dot-g { background: #28c840; }
 #term-bar-title {
   margin-left: 8px;
   font-family: 'GameOfThrones', serif;

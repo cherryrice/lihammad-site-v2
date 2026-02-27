@@ -618,7 +618,7 @@
 
     var i = 0;
     function next() {
-      if (i < lines.length) { println(lines[i][0], lines[i][1]); i++; setTimeout(next, 3000); }
+      if (i < lines.length) { println(lines[i][0], lines[i][1]); i++; setTimeout(next, 1000); }
     }
     next();
   }

@@ -298,6 +298,7 @@ body {
 }
 #term-out {
   flex: 1; overflow-y: auto;
+  color: #ff2222;
   padding: 20px 24px;
   font-family: 'Iosevka', 'Courier New', monospace;
   font-size: 14px;
@@ -319,6 +320,7 @@ body {
 }
 #term-input {
   flex: 1; background: none; border: none; outline: none;
+  color: #ff2222;
   font-family: 'Iosevka', 'Courier New', monospace;
   font-size: 14px;
   color: var(--term-col, #d4c9a8);
@@ -326,14 +328,21 @@ body {
 }
 
 /* Terminal text colors */
-.c-gld { color: #c8a84b; }
-.c-wht { color: #d4c9a8; }
-.c-red { color: #c0392b; }
-.c-grn { color: #5a8a3a; }
-.c-dim { color: #3a3020; }
-.c-ylw { color: #e3b341; }
-.c-blu { color: #4a80c0; }
-.c-cyn { color: #4ab8b8; }
+.c-gld     { color: #c8a84b; }
+.c-wht     { color: #d4c9a8; }
+.c-red     { color: #ff2222; }
+.c-grn     { color: #39ff14; }
+.c-dim     { color: #5a5040; }
+.c-ylw     { color: #ffff00; }
+.c-blu     { color: #00bfff; }
+.c-cyn     { color: #00ffff; }
+.c-org     { color: #ff8c00; }
+/* dim variants for help subtext */
+.c-blu-dim { color: #4a9fbf; }
+.c-grn-dim { color: #2a9a2a; }
+.c-ylw-dim { color: #b8a000; }
+.c-red-dim { color: #cc2200; }
+.c-org-dim { color: #c06000; }
 
 /* ============================================================
    HOUSE THEMES  — CSS vars + hero bg + accent
@@ -512,7 +521,7 @@ body.house-dunkthelunk {
 }
 .house-targaryen .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -523,7 +532,7 @@ body.house-dunkthelunk {
 }
 .house-lannister .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -534,7 +543,7 @@ body.house-dunkthelunk {
 }
 .house-tyrell .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -545,7 +554,7 @@ body.house-dunkthelunk {
 }
 .house-baratheon .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -556,7 +565,7 @@ body.house-dunkthelunk {
 }
 .house-martell .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -567,7 +576,7 @@ body.house-dunkthelunk {
 }
 .house-greyjoy .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -578,7 +587,7 @@ body.house-dunkthelunk {
 }
 .house-arryn .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -589,7 +598,7 @@ body.house-dunkthelunk {
 }
 .house-tully .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -600,7 +609,7 @@ body.house-dunkthelunk {
 }
 .house-dunkthelunk .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/faith-pattern.png") no-repeat center center;
+  background: url("/assets/faith-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);
@@ -608,7 +617,7 @@ body.house-dunkthelunk {
 }
 .house-stark .got-hero::before {
   content:''; position:absolute; inset:0; z-index:0;
-  background: url("../assets/oldgods-pattern.png") no-repeat center center;
+  background: url("/assets/oldgods-pattern.png") no-repeat center center;
   background-size: cover;
   opacity: 0.09;
   filter: brightness(0.7);

@@ -203,7 +203,7 @@
     println('So be it.', 'c-gld');
     blank();
     println(name + ' of House ' + HOUSES[pendingHouse].display + '.', 'c-gld');
-    println('"' + HOUSES[pendingHouse].words + '"', 'c-wht');
+    println(HOUSES[pendingHouse].words, 'c-wht');
     blank();
     println('Your allegiance is sworn. Type "home" to enter lihammad.com.', 'c-wht');
   }
@@ -363,23 +363,27 @@
     blank();
     println('LIHAMMAD.COM TERMINAL', 'c-gld');
     println('-----------------------------------------', 'c-dim');
-    println('[MAIN]', 'c-ylw');
-    println('  set-house <house>  -- enter the site', 'c-wht');
-    println('  houses                    -- list all houses', 'c-wht');
-    println('  home / exit / logout      -- go to site',     'c-wht');
-    println('  about                     -- about lihammad', 'c-wht');
-    println('  clear / reboot / shutdown', 'c-wht');
-    println('[SYSTEM]', 'c-ylw');
-    println('  whoami / id / hostname / uname / date / uptime', 'c-wht');
-    println('  pwd / ls / cat / ps / free / df / neofetch / history', 'c-wht');
+    println('[MAIN]', 'c-blu');
+    println('  set-house <house>              -- enter the site', 'c-blu-dim');
+    println('  houses                         -- list all houses', 'c-blu-dim');
+    println('  home / exit / logout           -- go to site', 'c-blu-dim');
+    println('  about                          -- about lihammad', 'c-blu-dim');
+    println('  clear / reboot / shutdown', 'c-blu-dim');
+    blank();
+    println('[SYSTEM]', 'c-grn');
+    println('  whoami / id / hostname / uname / date / uptime', 'c-grn-dim');
+    println('  pwd / ls / cat / ps / free / df / neofetch / history', 'c-grn-dim');
+    blank();
     println('[NETWORK]', 'c-ylw');
-    println('  ping / wget / ifconfig', 'c-wht');
-    println('[HACKING TOOLS]', 'c-ylw');
-    println('  nmap / msfconsole / hydra / hashcat / john', 'c-wht');
-    println('  nikto / gobuster / sqlmap / airmon-ng / kismet', 'c-wht');
-    println('[FUN]', 'c-ylw');
-    println('  echo / cowsay / figlet / matrix / sl / hack / rickroll', 'c-wht');
-    println('  whiterabbit / consequences', 'c-wht');
+    println('  ping / wget / ifconfig', 'c-ylw-dim');
+    blank();
+    println('[HACKING TOOLS]', 'c-red');
+    println('  nmap / msfconsole / hydra / hashcat / john', 'c-red-dim');
+    println('  nikto / gobuster / sqlmap / airmon-ng / kismet', 'c-red-dim');
+    blank();
+    println('[FUN]', 'c-org');
+    println('  echo / cowsay / figlet / matrix / sl / hack / rickroll', 'c-org-dim');
+    println('  whiterabbit / consequences', 'c-org-dim');
     blank();
   }
 
@@ -577,7 +581,6 @@
     ], 160, function () {
       pendingHouse = 'dunkthelunk';
       pendingName  = 'Duncan the Tall';
-      setTimeout(function () { goSite('dunkthelunk', 'Duncan the Tall'); }, 600);
       unlock();
     });
   }

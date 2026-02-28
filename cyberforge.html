@@ -737,20 +737,29 @@ function debounce(fn, ms){
   let t; return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args),ms); };
 }
 
-function highlightCmd(cmd){
-  return cmd.split('\n').map(line=>{
-    if(line.trimStart().startsWith('#'))
-      return `<span style="color:var(--cf-muted)">${esc(line)}</span>`;
-    const words=line.split(' ');
-    return words.map((w,i)=>{
-      if(i===0&&w) return `<span style="color:var(--cf-accent);font-weight:600">${esc(w)}</span>`;
-      if(w.startsWith('-')) return `<span style="color:var(--cf-accent2)">${esc(w)}</span>`;
-      if(w.startsWith('"')||w.startsWith("'")) return `<span style="color:var(--cf-success)">${esc(w)}</span>`;
-      return `<span style="color:var(--cf-text)">${esc(w)}</span>`;
-    }).join(' ');
-  }).join('\n');
+// Safe syntax highlighter — uses React elements (no dangerouslySetInnerHTML)
+function HighlightedCmd({text}){
+  const lines=text.split('\n');
+  return React.createElement(React.Fragment,null,
+    lines.map((line,li)=>{
+      const isComment=line.trimStart().startsWith('#');
+      const words=line.split(' ');
+      return React.createElement('div',{key:li},
+        isComment
+          ? React.createElement('span',{style:{color:'var(--cf-muted)'}},line)
+          : words.map((w,wi)=>{
+              let color='var(--cf-text)', fw='normal';
+              if(wi===0&&w){color='var(--cf-accent)';fw='600';}
+              else if(w.startsWith('-')) color='var(--cf-accent2)';
+              else if(w.startsWith('"')||w.startsWith("'")) color='var(--cf-success)';
+              return React.createElement('span',{key:wi,style:{color,fontWeight:fw}},
+                wi>0?' '+w:w
+              );
+            })
+      );
+    })
+  );
 }
-function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 const DIFF_COLOR={beginner:'#4ade80',intermediate:'#fbbf24',advanced:'#fb923c',expert:'#f87171'};
 const PLAT_COLOR={linux:'#22d3ee',windows:'#a78bfa','cross-platform':'#a1a1aa'};
@@ -879,13 +888,12 @@ function CommandCard({cmd,state,dispatch,addToast,idx}){
         React.createElement('button',{onClick:()=>dispatch({t:'FAV',v:cmd.id}),style:{background:'none',border:'none',cursor:'pointer',fontSize:16,lineHeight:1,color:isFav?'var(--cf-warn)':'var(--cf-muted)'}},isFav?'★':'☆')
       )
     ),
-    // Command block
+    // Command block — rendered as React text nodes (XSS-safe)
     React.createElement('pre',{
       onClick:doCopy,
       title:'Click to copy',
       style:{background:'var(--cf-surface)',border:'1px solid var(--cf-border)',borderRadius:7,padding:'10px 14px',fontFamily:"'JetBrains Mono',monospace",fontSize:12.5,lineHeight:1.6,overflowX:'auto',cursor:'pointer',marginBottom:10,whiteSpace:'pre-wrap',wordBreak:'break-all'},
-      dangerouslySetInnerHTML:{__html:highlightCmd(cmd.command)}
-    }),
+    },React.createElement(HighlightedCmd,{text:cmd.command})),
     // Description
     React.createElement('p',{style:{color:'var(--cf-muted)',fontSize:13,marginBottom:cmd.ctfTip||cmd.explanation.flags.length?10:0}},cmd.description),
     // CTF Tip

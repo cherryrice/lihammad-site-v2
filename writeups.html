@@ -507,7 +507,7 @@ The wheel validation requires all 32 five-bit values to be unique. Since 2^5 = 3
 3. Tried all 32 rotations of the wheel - rotation 4 produced the flag
 
 ### Flag
-\`CTF{GREY&CODE#GOES_VERY_H@RD}\`
+\`[FLAG REDACTED]\`
 `},
   {slug:'borderline-personality',title:'Borderline Personality',cat:'Web',pts:50,solves:null,
    md:`# Borderline Personality (Web, 50pts)
@@ -537,7 +537,7 @@ curl --path-as-is "http://chall.ehax.in:9098/%61dmin/flag"
 HAProxy sees \`/%61dmin/flag\` which doesn't match \`^/+admin\`. Flask/Werkzeug URL-decodes the path to \`/admin/flag\` and serves the flag.
 
 ## Flag
-\`EH4X{BYP4SSING_R3QU3S7S_7HR0UGH_SMUGGLING__IS_H4RD}\`
+\`[FLAG REDACTED]\`
 `},
   {slug:'chusembly',title:'Chusembly',cat:'Misc',pts:162,solves:131,
    md:`# Chusembly - EHAX CTF (Miscellaneous, 162pts, 131 solves)
@@ -627,27 +627,7 @@ CALL C
 
 The container's filesystem had been destroyed by other players -- only \`/proc\`, \`/etc\`, \`/sys\`, \`/dev\` remained. The original \`flag.txt\` no longer existed on disk.
 
-To recover the flag, we used \`exec()\` to scan process memory via \`/proc/self/mem\`, searching for the \`EH4X{\` pattern across all readable memory regions:
-
-\`\`\`python
-import os
-with open('/proc/self/maps','r') as f:
-    maps = f.readlines()
-mem_fd = os.open('/proc/self/mem', os.O_RDONLY)
-for line in maps:
-    parts = line.split()
-    if len(parts) < 2 or 'r' not in parts[1]:
-        continue
-    start, end = [int(x,16) for x in parts[0].split('-')]
-    size = end - start
-    if size > 50*1024*1024:
-        continue
-    try:
-        os.lseek(mem_fd, start, os.SEEK_SET)
-        data = os.read(mem_fd, size)
-        idx = data.find(b'EH4X{')
-        if idx >= 0:
-            flag_end = data.find(b'}', idx)
+To recover the flag, we used \`exec()\` to scan process memory via \`/proc/self/mem\`, searching for the \`[FLAG REDACTED]', idx)
             if flag_end >= 0:
                 print(data[idx:flag_end+1].decode('ascii','replace'))
     except:
@@ -662,7 +642,7 @@ Multiple copies of the flag were found in the heap, confirming the flag had been
 ## Flag
 
 \`\`\`
-EH4X{chusembly_a1n7_7h47_7uffff_br0}
+[FLAG REDACTED]
 \`\`\`
 
 ## Key Takeaways
@@ -728,7 +708,7 @@ This produces a 2600-bit binary string. Arranging these bits as a **130x20 grid*
 #### #  #    # #  #   ## #  # #### #   #  #   ##  #  #      #   #    # ####       #  # #### #### #  #  #    ##
 \`\`\`
 
-Reading the pixel font: **EH4X{N3WT0N_W45_R1GHT}**
+Reading the pixel font: **[FLAG REDACTED]**
 
 This decodes to "Newton was right" in leetspeak, referencing the Newton's method algorithm used in the validator. Note: the separators are underscores (not hyphens as visually ambiguous), and "WAS" uses \`W45\` (with \`5\` not \`S\`).
 
@@ -747,7 +727,7 @@ AUTHORIZATION DENIED: Node Invalid.
 ## Flag
 
 \`\`\`
-EH4X{N3WT0N_W45_R1GHT}
+[FLAG REDACTED]
 \`\`\`
 `},
   {slug:'ghosty',title:'Ghosty',cat:'Rev',pts:391,solves:null,
@@ -835,13 +815,13 @@ target = ghost_8d3f4a91c2e7b6d0
 
 \`\`\`
 $ echo "ghost_8d3f4a91c2e7b6d0" | nc chall.ehax.in 22222
-EH4X{fr3k7_fri3n5dly_1nt3rf4c35_0nc3_4g41n}
+[FLAG REDACTED]
 \`\`\`
 
 ## Flag
 
 \`\`\`
-EH4X{fr3k7_fri3n5dly_1nt3rf4c35_0nc3_4g41n}
+[FLAG REDACTED]
 \`\`\`
 
 ## Tools Used
@@ -874,7 +854,7 @@ The binary is a **RISC-V** executable, meaning it cannot run natively on x86_64.
 
 ### String Analysis
 \`strings\` revealed:
-- Two **fake flags**: \`EH4X{n0t_th3_r34l_fl4g}\` and \`EH4X{try_h4rd3r_buddy}\`
+- Two **fake flags**: \`[FLAG REDACTED]\` and \`[FLAG REDACTED]\`
 - Prompts: "Can you guess the flag?", "Enter the flag:"
 - Validation messages: "Wrong length!", "Correct! You guessed it!", "Wrong!"
 - The expected input length is **35 characters** (checked via \`li a5, 35\` / \`bne\`)
@@ -900,7 +880,7 @@ decrypted[i] = encrypted[i] ^ (7*i & 0xFF) ^ 0xA5
 The decrypted result is compared byte-by-byte against the user's input.
 
 #### Check 2: Format + Checksum (0x10622)
-- Verifies \`EH4X{...}\` wrapper (checks bytes at positions 0-4 and 34)
+- Verifies \`[FLAG REDACTED]\` wrapper (checks bytes at positions 0-4 and 34)
 - Computes sum of all 35 ASCII byte values
 - Verifies checksum == 3243
 
@@ -925,12 +905,12 @@ for i in range(35):
     decrypted[i] = (encrypted[i] ^ (counter & 0xFF) ^ 0xA5) & 0xFF
     counter += 7
 
-print(decrypted.decode())  # EH4X{y0u_gu3ss3d_th4t_r1sc_cr4ckm3}
+print(decrypted.decode())  # [FLAG REDACTED]
 \`\`\`
 
 ## Flag
 \`\`\`
-EH4X{y0u_gu3ss3d_th4t_r1sc_cr4ckm3}
+[FLAG REDACTED]
 \`\`\`
 `},
   {slug:'jpeg-soul',title:'JPEG SOUL',cat:'Forensics',pts:null,solves:null,
@@ -947,7 +927,7 @@ EH4X{y0u_gu3ss3d_th4t_r1sc_cr4ckm3}
 ## Flag
 
 \`\`\`
-EHAX{jp3g_s3crt}
+[FLAG REDACTED]
 \`\`\`
 
 ("jpeg secret" in leetspeak)
@@ -998,10 +978,9 @@ The 256 LSB bits (32 bytes) decode as:
 |-----------|--------|-----|-------|
 | 0-7 | QT0 | \`fff9036e2b850548\` | (non-printable) |
 | 8-15 | QT1 | \`e014000000000000\` | (non-printable) |
-| 16-23 | QT2 | \`454841587b6a7033\` | \`EHAX{jp3\` |
-| 24-31 | QT3 | \`675f73336372747d\` | \`g_s3crt}\` |
+| 16-23 | QT2 | \`454841587b6a7033\` | \`[FLAG REDACTED]\` |
 
-The flag \`EHAX{jp3g_s3crt}\` is encoded entirely in the LSBs of **QT2 and QT3** (the two unused quantization tables). QT0 and QT1 (the tables actually used for image compression) contain non-flag data in their LSBs.
+The flag \`[FLAG REDACTED]\` is encoded entirely in the LSBs of **QT2 and QT3** (the two unused quantization tables). QT0 and QT1 (the tables actually used for image compression) contain non-flag data in their LSBs.
 
 ### Why Standard Tools Failed
 
@@ -1074,9 +1053,8 @@ for k in range(0, len(all_lsbs), 8):
     result.append(byte)
 
 # Extract flag
-idx = result.find(b'EHAX{')
-end = result.find(b'}', idx)
-print(result[idx:end+1].decode())  # EHAX{jp3g_s3crt}
+idx = result.find(b'[FLAG REDACTED]', idx)
+print(result[idx:end+1].decode())  # [FLAG REDACTED]
 \`\`\`
 `},
   {slug:'kaje',title:'Kaje',cat:'Rev',pts:467,solves:42,
@@ -1156,7 +1134,7 @@ The challenge description hints at multiple approaches -- but fundamentally, the
 
 | Environment | r12 | Decrypted Output |
 |---|---|---|
-| Docker + overlay | \`0x665742caed9fd119\` | \`EH4X{dUnn0_wh4tt_1z_1nt3NTenD3d}\` |
+| Docker + overlay | \`0x665742caed9fd119\` | \`[FLAG REDACTED]\` |
 | Docker + no overlay | \`0xcd9aadd8d9c9a989\` | garbage |
 | No docker + overlay | \`0xb8fafc2527616ba7\` | garbage |
 | No docker + no overlay | \`0x1337133713371337\` | garbage |
@@ -1166,7 +1144,7 @@ The correct environment is **Docker with overlay filesystem** (the "intended" ex
 ## Flag
 
 \`\`\`
-EH4X{dUnn0_wh4tt_1z_1nt3NTenD3d}
+[FLAG REDACTED]
 \`\`\`
 
 The flag text "dUnn0_wh4tt_1z_1nt3NTenD3d" (dunno what is intended) mirrors the challenge description "I don't know what is the intended solution anymore."
@@ -1190,7 +1168,7 @@ The challenge provides an MKV (Matroska) video file. Using \`ffprobe\`, we disco
 - 1 H.264 video track
 - **2 FLAC audio tracks** (both stereo, 44100Hz)
 
-The container metadata includes a decoy flag: \`EH4X{k33p_try1ng}\` — literally telling us to keep trying.
+The container metadata includes a decoy flag: \`[FLAG REDACTED]\` — literally telling us to keep trying.
 
 ### 2. Key Insight
 
@@ -1209,12 +1187,12 @@ Computing the **spectrogram of the difference signal** reveals text written as b
 Reading the spectrogram text:
 
 \`\`\`
-EH4X{0n3_tr4ck_m1nd_tw0_tr4ck_f1les}
+[FLAG REDACTED]
 \`\`\`
 
 ## Flag
 
-\`EH4X{0n3_tr4ck_m1nd_tw0_tr4ck_f1les}\`
+\`[FLAG REDACTED]\`
 `},
   {slug:'lulocator',title:'lulocator',cat:'BinEx',pts:50,solves:186,
    md:`# lulocator - Binary Exploitation (50 pts, 186 solves)
@@ -1354,7 +1332,7 @@ p.interactive()
 ## Flag
 
 \`\`\`
-EH4X{unf0rtun4t3ly_th3_lul_1s_0n_m3}
+[FLAG REDACTED]
 \`\`\`
 `},
   {slug:'pathfinder',title:'pathfinder',cat:'Rev',pts:null,solves:null,
@@ -1496,14 +1474,14 @@ The flag function applies **Run-Length Encoding (RLE)** to the path:
 - \`EE\` → \`2E\`, \`SSS\` → \`3S\`, \`WW\` → \`2W\`, \`SSSSSS\` → \`6S\`
 - \`EEEEEEEE\` → \`8E\`, \`NN\` → \`2N\`, \`E\` → \`E\`, \`SS\` → \`2S\`
 
-Wrapped in \`EHAX{...}\` giving: \`EHAX{2E3S2W6S8E2NE2S}\`
+Wrapped in \`[FLAG REDACTED]\` giving: \`[FLAG REDACTED]\`
 
 ## Flag
 \`\`\`
-EHAX{2E3S2W6S8E2NE2S}
+[FLAG REDACTED]
 \`\`\`
 
-*Note: The binary uses \`EHAX{...}\` prefix rather than the standard \`EH4X{...}\` format.*
+*Note: The binary uses \`[FLAG REDACTED]\` prefix rather than the standard \`[FLAG REDACTED]\` format.*
 `},
   {slug:'power-leak',title:'Power Leak',cat:'Forensics',pts:50,solves:null,
    md:`# Power Leak - Forensics (50 pts)
@@ -1514,7 +1492,7 @@ EHAX{2E3S2W6S8E2NE2S}
 - **Category:** Forensics
 - **Points:** 50
 - **Author:** tanishfr
-- **Description:** "Power reveals the secret. EHAX{SHA256(secret)}"
+- **Description:** "Power reveals the secret. [FLAG REDACTED]"
 
 ## Analysis
 
@@ -1565,7 +1543,7 @@ SHA256("792963") = 5bec84ad039e23fcd51d331e662e27be15542ca83fd8ef4d6c5e5a8ad614a
 ## Flag
 
 \`\`\`
-EHAX{5bec84ad039e23fcd51d331e662e27be15542ca83fd8ef4d6c5e5a8ad614a54d}
+[FLAG REDACTED]
 \`\`\`
 
 ## Key Takeaways
@@ -1584,7 +1562,7 @@ EHAX{5bec84ad039e23fcd51d331e662e27be15542ca83fd8ef4d6c5e5a8ad614a54d}
 ## Flag
 
 \`\`\`
-EH4X{qu4ntum_phys1c5_15_50_5c4ry}
+[FLAG REDACTED]
 \`\`\`
 
 (Leetspeak for "quantum physics is so scary")
@@ -1825,7 +1803,7 @@ The exploit script sends the bytecode, provides 8 dummy bytes for READ, receives
 ## Flag
 
 \`\`\`
-EH4X{l00ks_l1k3_1_n33d_4_s4rc4st1c_tut0r14l}
+[FLAG REDACTED]
 \`\`\`
 `},
   {slug:'womp-womp',title:'Womp Womp',cat:'BinEx',pts:50,solves:215,
@@ -1962,7 +1940,7 @@ print(r.recvall(timeout=5))
 ## Flag
 
 \`\`\`
-EH4X{r0pp3d_th3_w0mp3d}
+[FLAG REDACTED]
 \`\`\`
 `},
 ];
